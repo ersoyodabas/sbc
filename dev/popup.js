@@ -1,6 +1,6 @@
 let popup = {
     data: {
-        api_url: 'http://localhost:5000',
+        api_url: 'http://localhost:64756',
         //api_url: 'https://sbcsolverapp.com',
         email: '',
         password: '',
