@@ -1,11 +1,11 @@
 let popup = {
     data: {
         api_url: 'http://localhost:64756',
-        //api_url: 'https://sbcsolverapp.com',
+       // api_url: 'https://api.sbcsolverapp.com',
         email: '',
         password: '',
         facebook_contat_url: 'http://m.me/sbcsolver',
-        login_model: { email: '', password: '', lang: 'en', version: '21.4' },
+        login_model: { email: '', password: '', lang: 'en', version: '21.5' },
         ls: {},
         loc: {},
     },
