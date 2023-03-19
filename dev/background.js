@@ -32,14 +32,14 @@ async function backgroundMounted() {
         if (document.getElementById('modal-membership-expired')) {
             document.getElementById('modal-membership-expired').remove();
         };
-        if (document.getElementById('contolTopPanel')) {
-            document.getElementById('contolTopPanel').remove();
+        if (document.getElementById('top_bar')) {
+            document.getElementById('navBar').remove();
         };
         if (document.getElementById('controlPanel')) {
             document.getElementById('controlPanel').remove();
         };
-        if (document.getElementById('actionsModal')) {
-            document.getElementById('actionsModal').remove();
+        if (document.getElementById('menuContent')) {
+            document.getElementById('menuContent').remove();
         };
 
         if (document.getElementById('errorBox')) {
