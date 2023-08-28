@@ -17,9 +17,9 @@
       "css": ["background.css"]
     }
     ], 
-  "description" : "Fifa Companion Sbc Solver APP",
+  "description" : "Fifa Companion Sbc Solver",
   "manifest_version" : 2,
-  "name" : "Sbc Solver APP",
+  "name" : "Sbc Solver",
   "icons": {
     "16": "images/comp_logo.png",
     "48": "images/comp_logo.png",
@@ -31,6 +31,6 @@
     "chrome_style": true
    },
   "permissions": ["activeTab", "declarativeContent", "storage" , "management"],
-  "version" : "23"
+  "version" : "24"
 
 }

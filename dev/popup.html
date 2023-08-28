@@ -12,16 +12,88 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 		<!-- Font Awesome -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.css" integrity="sha512-KOWhIs2d8WrPgR4lTaFgxI35LLOp5PRki/DxQvb7mlP29YZ5iJ5v8tiLWF7JLk5nDBlgPP1gHzw96cZ77oD7zQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="jquery-3.4.1.min.js"></script>
     <script src="popup.js"></script>
    
 
   </head>
   <body id="popUpBody">
-	
-  
+    <div id="default_bg" class="row text-center">
+      <div class="col-48 header"> 
+        <i class="fa-solid fa-plug-circle-minus mr-2"></i> <span id="connecting"></span>
+        <div class="loaderxx"></div>
+      </div>
+      <div class="col-48 body mt-2"> <span id="connecting_desc">  </span></div>
+    </div>  
+
+
+    <style>
+      #default_bg{
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        padding: 20px 30px 20px 30px;
+        width: 350px;
+        height: 180px;
+        background-color: rgb(57, 57, 57) !important;
+        /* background-image: url(https://i.hizliresim.com/qlw1e5b.jpg); */
+        background-repeat: no-repeat;
+
+      /* Full height */
+      /* height:360px !important; */
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      background-size: cover;
+      background-repeat: no-repeat;
+      /* background-color: #1a1d23; */
+      border: 2px solid #000000;
+      box-sizing: border-box;
+      color: #e2dde2;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      border-radius: 5px;
+    }
+    #default_bg > .header{
+      background-color: rgb(0, 0, 0);
+      color: rgba(255, 255, 255, 0.976);
+      font-size: 25px;
+      width: 100%;
+      padding: 15px 20px 10px 20px;
+      display: flex;
+      border-radius: 20px;
+    }
+
+    .loaderxx {
+      border: 5px solid #f3f3f3;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+    border-top: 5px solid #555;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    margin-top: 5px;
+    }
+
+    #connecting_desc{
+      font-size: 18px;
+    }
+
+    /* Safari */
+    @-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+}
+    </style>
   </body>
 </html>

@@ -31,6 +31,6 @@
     "chrome_style": true
    },
   "permissions": ["activeTab", "declarativeContent", "storage" , "management"],
-  "version" : "22"
+  "version" : "24"
 
 }

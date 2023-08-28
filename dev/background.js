@@ -3,8 +3,8 @@ loc = {};
 
 
 (async function() {
-    chrome.storage.local.get(['sbcsolver'], function(data) {
-        ls = data.sbcsolver;
+    chrome.storage.local.get(['sbcsolver24'], function(data) {
+        ls = data.sbcsolver24;
         ls.lang = ls.lang === undefined ? 'en' : ls.lang;
         backgroundMounted();
     });
@@ -13,17 +13,28 @@ loc = {};
 
 async function backgroundMounted() {
     try {
-
         if(!document.querySelector(".futweb")){
-            alert('EN : Please try again after logging fifa web companion platform. \n TR : Lütfen  fifa web companion hesabınıza giriş yaptıktan sonra tekrar deneyiniz.');
+            if(ls.lang ==='en'){
+                alert('Please try again after logging fifa web companion platform.');
+            } else {
+                alert(' Lütfen  fifa web companion hesabınıza giriş yaptıktan sonra tekrar deneyiniz.');
+            }
+            return;
         }
 
-        postParams = {};
-        postParams.lang = ls.lang;
-        let res = await postData(ls.api_url + '/api/staticData/getScripts', postParams);
+        if(document.getElementById('sbcapp')){
+            if(ls.lang ==='en'){
+                alert('You have tried to log in to the program before, if you want to log in again, you need to refresh the page with F5. Then you can try to log in again.');
+            } else {
+                alert('Programa daha önce giriş yapmaya çalışılmış, tekrar giriş yapmak istiyorsanız F5 ile sayfayı yenilemeniz gerekmektedir.Sonrasında tekrar giriş yapmayı deneyebilirsiniz.');
+            }
+            return;
+        }
+
+        let res = await getData(ls.api_url + '/api/staticData/scripts');
 
         // styles
-        res.data.css.forEach(element => {
+        res.css.forEach(element => {
             document.querySelector(".futweb").insertAdjacentHTML('beforeend', '<style>' + element + '</style>');
         });
 
@@ -41,18 +52,23 @@ async function backgroundMounted() {
         if (document.getElementById('menuContent')) {
             document.getElementById('menuContent').remove();
         };
-
         if (document.getElementById('errorBox')) {
             document.getElementById('errorBox').remove();
         };
 
-
-        res.data.html.forEach(row => {
-            document.querySelector(".futweb").insertAdjacentHTML('beforeend', row);
+        // HTML
+        document.body.insertAdjacentHTML('beforeend', res.html_app);
+        res.html_features.forEach(row => {
+            document.getElementById('sbcappfeatures').insertAdjacentHTML('beforeend', row);
+        });
+        res.html_modals.forEach(row => {
+            document.getElementById('sbcmodals').insertAdjacentHTML('beforeend', row);
         });
 
+        
+
         var evalData = '';
-        res.data.js.forEach(row => {
+        res.js.forEach(row => {
             evalData += " \n  \n " + row;
         });
 
@@ -125,7 +141,7 @@ async function postData(url = '', data = {}) {
         credentials: 'same-origin', // include, *same-origin, omit
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer' + ls.token,
+            'Authorization': 'Bearer ' + ls.token,
             // 'Content-Type': 'application/x-www-form-urlencoded',
         },
         redirect: 'follow', // manual, *follow, error
