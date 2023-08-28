@@ -1,11 +1,11 @@
 let popup = {
     data: {
-       //api_url: 'https://api.sbcsolverapp.com',
-       api_url: 'http://localhost:28406',
+        api_url: 'https://api.sbcsolverapp.com',
+      //api_url: 'http://localhost:28406',
         email: '',
         password: '',
         // facebook_contat_url: 'http://m.me/sbcsolver',
-        login_model: { email: '', password: '', lang: 'en', version: '24' },
+        login_model: { email: '', password: '', lang: 'en', version: '24.1' },
         ls: {},
         loc: {},
     },
@@ -183,19 +183,8 @@ let popup = {
 
                 self.loaderShow();
                 res = await self.postData(popup.data.api_url + '/api/user/loginbot', popup.data.login_model);
-
-                if(res.require_new_version){
-                    if (res) {
-                        if (res.require_new_version) {
-                            res.message = popup.data.loc.login.alert_old_version;
-                            $('#aDownloadVersion').attr('hidden', false);
-                            $('#aDownloadVersion').attr('href', res.app_download_link);
-                            $('#aLogin').attr('hidden', true);
-                        } else {
-                            $('#aDownloadVersion').attr('hidden', true);
-                            $('#aLogin').attr('hidden', false);
-                        }
-                    }
+                debugger;
+                if(!res.result){
 
                     //Hata mesajını yazdır
                     document.querySelector('#errorBox > span').innerHTML = res.message;
@@ -204,15 +193,33 @@ let popup = {
                     //Hata mesajını ekrandan kaldır
                     setTimeout(() => {
                         $('#errorBox').attr('hidden', true);
-                    }, 3000);
-                } else {
+                    }, 3000);  
+
+
+
+                    if (res.data&& res.data.require_new_version) {
+                        // res.message = popup.data.loc.login.alert_old_version;
+                        document.getElementById('aDownloadVersion').hidden = false;
+                        document.getElementById('aDownloadVersion').href = res.data.app_download_link;
+                        document.getElementById('aLogin').hidden = true;
+                    } else {
+                        document.getElementById('aDownloadVersion').hidden = true;
+                        document.getElementById('aLogin').hidden = false;
+                    }
+
+                
+                    
+                    
+                  
+                }
+               else {
                     popup.data.ls.email = popup.data.login_model.email;
                     popup.data.ls.password = popup.data.login_model.password;
 
-                    popup.data.ls.token = res.token;
-                    popup.data.ls.user = res.user;
-                    popup.data.ls.menu = res.menu;
-                    popup.data.ls.payment = res.payment;
+                    popup.data.ls.token = res.data.token;
+                    popup.data.ls.user = res.data.user;
+                    popup.data.ls.menu = res.data.menu;
+                    popup.data.ls.payment = res.data.payment;
 
                     chrome.storage.local.set({
                         sbcsolver24: popup.data.ls
