@@ -76,13 +76,7 @@ async function backgroundMounted() {
         eval(evalData);
 
     } catch (error) {
-        console.log(error.message);
-        console.log(error.stack);
         const [, lineno, colno] = error.stack.match(/(\d+):(\d+)/);
-        console.log('Line:', lineno);
-        console.log('Column:', colno);
-        console.log('ERROR => ', error);
-
 
         //SHOW ERROR MSG 
         var sub_el = '<div class="Notification negative"><p>Loading Error =>' + error + '</p><span class="icon_close fut_icon"></span></div>';
