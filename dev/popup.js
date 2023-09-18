@@ -20,16 +20,12 @@ let popup = {
 
         async getPopupHtml() {
             let self = this;
-            console.log(23,popup.data.ls);
-            console.log(23,popup.data.user);
             let url = popup.data.api_url + '/api/staticData/popup?email=' + (popup.data.ls.user ? popup.data.ls.user.email:'');
             let res = await self.getData(url);
-            console.log(28,res);
             if(!res){return;}
 
             try {
-            document.getElementById('default_bg').hidden = true;
-                console.log(27,JSON.stringify(res));
+                document.getElementById('default_bg') ? document.getElementById('default_bg').hidden = true : 1==1;
                 // let res = await response.json();
                 if (document.querySelector("#popUpBody")) {
                     document.querySelector("#popUpBody").innerHTML = res.content.html;
@@ -41,7 +37,6 @@ let popup = {
                     //bind control titles
                     document.getElementById('lblLogin').innerHTML = popup.data.loc.login.login;
                     // document.getElementById('lblContact').innerHTML = popup.data.loc.login.contact;
-                    console.log(43,popup.data.loc.login);
                     document.getElementById('lblDownloadNewVersion').innerHTML = popup.data.loc.login.download_new_version;
 
                     $("#closeIcon").click(function() {
@@ -82,7 +77,7 @@ let popup = {
 
                 }
             } catch (error) {
-                document.getElementById('default_bg').hidden = false;
+                document.getElementById('default_bg') ?  document.getElementById('default_bg').hidden = false : 1==1;
                 document.getElementById('connecting_desc').innerHTML = error;
             }
         },
@@ -235,8 +230,6 @@ let popup = {
 
                     window.close();
                 }
-                // console.log(res);
-                // localStorage.setItem('sbcsolver24', JSON.stringify(res));
                 self.loaderHide();
             };
 
@@ -262,7 +255,6 @@ let popup = {
 				.then(function(response){
 					if(response.status!==200){
                         response.text().then(res =>{
-                            console.log('post error',res);
                             if(res){
                                 alert(res);
                             }
@@ -299,7 +291,7 @@ let popup = {
                     .then((response) => {
                         if(response.status!==200){
                             response.text().then(res =>{
-                                console.log('get error',res);
+                                le.log('get error',res);
                                 if(res){
                                     alert(res);
                                 }
@@ -331,12 +323,15 @@ let popup = {
                 popup.data.ls = data.sbcsolver24;
             }
 
-            if(popup.data.ls.lang ==='tr'){
-                document.getElementById('connecting').innerHTML = 'Bağlanıyor ... ';
-                document.getElementById('connecting_desc').innerHTML = 'Eğer bağlanma işlemi uzun sürerse, lütfe daha sonra tekrar deneyiniz...';
-            } else {
-                document.getElementById('connecting').innerHTML = 'Connecting ... ';
-                document.getElementById('connecting_desc').innerHTML = 'If it takes a long time to connect, please try again later.';
+
+            if(document.getElementById('connecting')){
+                if(popup.data.ls.lang ==='tr'){
+                    document.getElementById('connecting').innerHTML = 'Bağlanıyor ... ';
+                    document.getElementById('connecting_desc').innerHTML = 'Eğer bağlanma işlemi uzun sürerse, lütfe daha sonra tekrar deneyiniz...';
+                } else {
+                    document.getElementById('connecting').innerHTML = 'Connecting ... ';
+                    document.getElementById('connecting_desc').innerHTML = 'If it takes a long time to connect, please try again later.';
+                }
             }
 
             await popup.methods.getPopupHtml()
