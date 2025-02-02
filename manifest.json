@@ -1,0 +1,62 @@
+{
+  "manifest_version": 3,
+  "name": "Sbc Solver APP",
+  "version": "25",
+  "description": "The World's Best Web App Bot",
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab", 
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type":"module"
+},
+  "host_permissions": [
+   "<all_urls>"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none';"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "assets/image/app_logo.png",
+      "48": "assets/image/app_logo.png",
+      "128": "assets/image/app_logo.png"
+    }
+  },
+  "icons": {
+    "16": "assets/image/app_logo.png",
+    "48": "assets/image/app_logo.png",
+    "128": "assets/image/app_logo.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*/*ultimate-team*","*://*/*signin.ea*"],
+      "js": ["background.js"],
+      "type": "module"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/sound/coin_drop.mp3",
+        "assets/sound/drum_voltage_short.mp3",
+        "assets/sound/drum_voltage_long.mp3",
+        "assets/sound/error_beep.mp3",
+        "assets/sound/error_main.mp3",
+        "assets/sound/negative.mp3",
+        "assets/sound/snare.mp3",
+        "assets/sound/success.mp3",
+        "assets/sound/wow.mp3",
+
+        "assets/css/loader.css",
+        "assets/html/default.html"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "update_url": "https://sbcsolverapp.com/bot/updates.xml"
+}
