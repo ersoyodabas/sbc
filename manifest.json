@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Sbc Solver APP",
+  "name": "Sbc Bot",
   "version": "25.11",
-  "version_required":false,
-  "description": "The World's Best Web App Bot 1",
+  "version_required":true,
+  "description": "The World's Best Web App Bot",
   "permissions": [
     "storage",
     "tabs",
