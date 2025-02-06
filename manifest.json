@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Sbc Bot",
+  "name": "Sbc BOT",
   "version": "25.11",
-  "version_required":true,
+  "version_required":false,
   "description": "The World's Best Web App Bot",
   "permissions": [
     "storage",
@@ -11,7 +11,7 @@
     "scripting"
   ],
   "background": {
-    "service_worker": "background.js",
+    "service_worker": "background.js",  
     "type":"module"
 },
   "host_permissions": [
@@ -59,5 +59,5 @@
       "matches": ["<all_urls>"]
     }
   ],
-  "update_url": "https://sbcsolverapp.com/bot/updates.xml"
+  "update_url": "https://ersoyodabas.github.io/sbc_update/updates.xml"
 }
