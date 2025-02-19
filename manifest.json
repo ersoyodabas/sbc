@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Sbc BOT",
   "version": "25.13",
-  "version_required":true,
+  "version_required":false,
   "description": "The World's Best Web App Bot",
   "permissions": [
     "storage",
